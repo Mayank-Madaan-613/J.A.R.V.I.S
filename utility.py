@@ -125,7 +125,7 @@ def sendmsg():
     print(contact)
     speaker.speak('kindly tell the message')
     msg=voice()
-    savedcontacts={'ananya':'+919811768123','mayank':'+919211168123','papa':'+919811168123'}
+    savedcontacts={'jayant':'+917983060701','mayank':'+919211168123','vartul':'+919509574204','rohan':'+919953111446'}
     current_time=(str((datetime.datetime.now()).time())).split(':')
     for i in savedcontacts:
         if i in contact.lower():
@@ -165,5 +165,5 @@ def main():
         
         
 
-main()
+# main()
 
