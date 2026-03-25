@@ -81,6 +81,7 @@
 # sendmsg()
 # # main()
 # # voice()
+from geminiapi import AI_search
 import webbrowser as wb
 import customtkinter as ct
 import win32com.client as wc
@@ -89,7 +90,11 @@ import os
 import sys
 import pywhatkit
 import datetime
+from google import genai
 speaker=wc.Dispatch('SAPI.SpVoice')
+def typein():
+    a=input('Enter')
+    return a
 def voice():
     try:
         r=sr.Recognizer()
@@ -122,9 +127,13 @@ def calling():
 def sendmsg():
     speaker.speak('may i know the contact name')
     contact=voice()
+    if 'type' in contact:
+        contact=typein()
     print(contact)
     speaker.speak('kindly tell the message')
     msg=voice()
+    if 'type' in msg:
+        msg=typein()
     savedcontacts={'jayant':'+917983060701','mayank':'+919211168123','vartul':'+919509574204','rohan':'+919953111446'}
     current_time=(str((datetime.datetime.now()).time())).split(':')
     for i in savedcontacts:
@@ -135,15 +144,22 @@ def sendmsg():
         else: 
             speaker.speak('sorry i cant\'t find the contact')
             return
+class gemini:
+    def __init__(self):
+        speaker.speak("turning on search mode...........")
+        speaker.speak("what is your query sir?")
+        hearingobj=voice()
+        response=AI_search(hearingobj)
+        speaker.speak(response)
 def main():
     speaker.speak('starting.............')
-    speaker.speak('welcome')
+    speaker.speak('greetings')
     while True:
         try:
             q=calling()
         except:
             continue
-        if (q.lower()).startswith('hey jarvis'):
+        if (q.lower()).startswith('hello'):
             a=voice()
             if (a.lower()).startswith('play'):
                 playmusic()
@@ -154,16 +170,14 @@ def main():
             elif (a.lower()).startswith('send a message'):
                 sendmsg()
                 continue
+            elif "turn on ai mode" in a.lower():
+                a=gemini()
+
             elif "that's all" in a.lower():
                 speaker.speak('Signing off')
                 sys.exit()
-                
             else:
                 speaker.speak("I'am afraid that i cant't do that...")
                 continue
-                
-        
-        
 
-# main()
-
+main()

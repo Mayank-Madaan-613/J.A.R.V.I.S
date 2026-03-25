@@ -3,10 +3,8 @@ from PIL import Image
 def trim_whitespace(img_path, save_as):
     img = Image.open(img_path)
     img = img.convert("RGBA")          # ensure transparency support
-
     # get bounding box of non-empty pixels
     bbox = img.getbbox()
-
     # crop to that box
     trimmed = img.crop(bbox)
     trimmed.save(save_as)
