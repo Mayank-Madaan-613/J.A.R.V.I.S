@@ -6,6 +6,7 @@ import time
 # Screen size
 screen_w, screen_h = pyautogui.size()
 
+
 # Webcam
 cap = cv2.VideoCapture(0)
 
@@ -23,6 +24,8 @@ clicked = False
 pinch_time=None
 mute_time=None
 mute=False
+mouse_mode=False
+mode_time=None
 
 while True:
     success, frame = cap.read()
@@ -78,6 +81,9 @@ while True:
 
             ring_ip=landmarks[14]
             ring_tip=landmarks[16]
+            ring_below=landmarks[13]
+            r_b_x=int(ring_below.x*w)
+            r_b_y=int(ring_below.y*h)
             rx=int(ring_tip.x*w)
             ry=int(ring_tip.y*h)
             r_ip_y=int(ring_ip.y*h)
@@ -113,8 +119,21 @@ while True:
             cv2.putText(frame, f"Dist: {int(distance)}",(50,100),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
 
             distance_thumb_tip_pinky_tip=math.hypot(tx-px,ty-py)
-            cv2.putText(frame, f"Dist_t_i_ip: {int(distance_thumb_tip_pinky_tip)}",(50,70),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),2)
+            distance_thumb_tip_index_tip=math.hypot(tx-ix,ty-iy)
+            cv2.putText(frame, f"click:{distance_thumb_tip_index_tip}",(50,150),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)
+            distance_thumb_tip_bel_ring=math.hypot(tx-r_b_x,ty-r_b_y)
+            if distance_thumb_tip_bel_ring<25:
+                if mode_time is None:
+                    mode_time=time.time()
+                if time.time()-mode_time>2:
+                    mouse_mode=not(mouse_mode)
+                    mode_time=None
+            if mouse_mode:
+                pyautogui.moveTo(thumb_tip.x*screen_w,thumb_tip.y*screen_h)
+                if int(distance_thumb_tip_index_tip)<25:
+                    pyautogui.doubleClick()
 
+            cv2.putText(frame, f"mode:{mouse_mode}",(50,200),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),3)
             # Click when pinched
             if distance < 27:
                 if pinch_time is None:
