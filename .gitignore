@@ -3,3 +3,5 @@
 __pycache__/
 voices/
 PyWhatKit_DB.txt
+intent_model.pkl
+vectorizer.pkl
