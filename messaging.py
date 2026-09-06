@@ -1,11 +1,20 @@
 import pywhatkit
 import datetime
 class What_message:
-    contacts={"mayank":"+919211168123"}
-    def __init__(self,contact,message):
-        self.date=datetime.datetime.now()
-        self.current_time=(str((self.date).time())).split(':')
-        if contact.lower() in What_message.contacts:
-            pywhatkit.sendwhatmsg(self.contacts[contact],message,int(self.current_time[0]),int(self.current_time[1])+2)
+    def __init__(self):
+        self.contacts={"mayank":"+919211168123","papa":"+919811168123"}
+    def message(self, contact,message):
+        date=datetime.datetime.now()
+        current_time=(str((date).time())).split(':')
+        if contact.lower() in self.contacts:
+            pywhatkit.sendwhatmsg_instantly(self.contacts[contact],message)
+    def schedule_msg(self,contact,message,inp_time):
+        #inp_inp_time=[hour,min]
+        if contact.lower() in self.contacts:
+            date=datetime.datetime.now()
+            current_time=str((date).time()).split(":")
+            pywhatkit.sendwhatmsg(self.contacts[contact],message,inp_time[0],inp_time[1])
+
 if __name__=="__main__":
-    What_message("mayank","hey there")
+    a=What_message()
+    a.message("mayank","hello jii")
