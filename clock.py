@@ -8,8 +8,7 @@ class Clock:
         dt_obj=datetime.fromtimestamp(time_curr)
         time_curr=dt_obj.strftime("%I %M %p")
         return time_curr
-    def timmer(self,user_time):
-
+    def timer(self,user_time):
         pattern = re.compile(
     r"(?:(?P<hr>\d+)\s*(?:hours?|hour?))?[^\d]*"
     r"(?:(?P<min>\d+)\s*(?:minutes?|minute?))?[^\d]*"
@@ -35,5 +34,3 @@ class Clock:
             if int(time.time())-timmer_init >=counter_time:
                 print("times up!")
                 break
-a=Clock()
-print(a.timmer("2 hours and 10 seconds"))
