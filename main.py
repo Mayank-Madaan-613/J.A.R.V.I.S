@@ -26,10 +26,10 @@ class Main:
         self.app_open=app_open()
         self.what_msg=What_message()
         self.func_dict={"web_search":self.browser.search,"open_app":self.app_open.open,"what_msg":self.what_msg.message,"timer":self.time.timer,"time_rn":self.time.time_rn}
-        # data,fs=sf.read("sounds/startup.wav",dtype="float32")
-        # loud_data=data*4
-        # loud_data=np.clip(loud_data,-1.0,1.0)
-        # sd.play(loud_data,fs*0.75)
+        data,fs=sf.read("sounds/startup.wav",dtype="float32")
+        loud_data=data*4
+        loud_data=np.clip(loud_data,-1.0,1.0)
+        sd.play(loud_data,fs*0.75)
         sd.wait()
     def type_inp(self,inp):
         intent=self.predict.predict(inp)
