@@ -41,7 +41,7 @@ while True:
 
     if results.multi_hand_landmarks:
 
-        for hand in results.multi_hand_landmarks:
+        for hand in results.multi_hand_landmarks:# using loop so that it processes only one hand at one time
 
             # Draw landmarks
             mp_draw.draw_landmarks(
@@ -122,10 +122,10 @@ while True:
             distance_thumb_tip_index_tip=math.hypot(tx-ix,ty-iy)
             cv2.putText(frame, f"click:{distance_thumb_tip_index_tip}",(50,150),cv2.FONT_HERSHEY_SIMPLEX,1,(0,0,255),2)
             distance_thumb_tip_bel_ring=math.hypot(tx-r_b_x,ty-r_b_y)
-            if distance_thumb_tip_bel_ring<25:
+            if distance_thumb_tip_bel_ring<30:
                 if mode_time is None:
                     mode_time=time.time()
-                if time.time()-mode_time>2:
+                if time.time()-mode_time>1.5:
                     mouse_mode=not(mouse_mode)
                     mode_time=None
             if mouse_mode:
@@ -134,7 +134,7 @@ while True:
                     pyautogui.doubleClick()
 
             cv2.putText(frame, f"mode:{mouse_mode}",(50,200),cv2.FONT_HERSHEY_SIMPLEX,1,(255,255,255),3)
-            # Click when pinched
+            # close when pinched index and middle finger
             if distance < 27:
                 if pinch_time is None:
                     pinch_time=time.time()
@@ -166,7 +166,7 @@ while True:
                 mute_time=None
 
 
-    cv2.imshow("jarvis trials", frame)
+    cv2.imshow("JARVIS", frame)
 
     if cv2.waitKey(1) & 0xFF == 27:
         break
