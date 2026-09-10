@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import datetime
+from openwakeword.model import Model
 from stt import STT
 from websearch import Browser
 from geminiapi import gemini
@@ -14,11 +15,17 @@ from app_open import app_open
 from messaging import What_message
 import asyncio 
 import numpy as np
-
+import pyaudio
+model=Model(wakeword_models=["hey_jarvis"])
+pa = pyaudio.PyAudio()
+stream = pa.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1280)
+speaker=TTS()
+speech=STT()
+listen_aud,fs=sf.read("sounds/listening.wav",dtype="float32")
+rm_aud=fs*0.5
+listen_aud=listen_aud[:-int(rm_aud)]
 class Main:
     def __init__(self):
-        self.speaker=TTS()
-        self.speech=STT()
         self.browser=Browser()
         self.ai_result=gemini()
         self.predict=Predict()
@@ -42,22 +49,27 @@ class Main:
             case "what_msg":
                 self.what_msg.message(inp)
             case "timer":
-                self.speaker.speak("timmer started")
+                speaker.speak("timmer started")
                 asyncio.create_task(self.time.start_timer(inp))
             case "time_rn":
                 res=self.time.time_rn()
-                self.speaker.speak(res)
+                speaker.speak(res)
             case _ :
-                self.speaker.speak("ohh! sorry this feature is unavailable at the moment")
-        # func_exe=self.func_dict.get(intent)
-        # a=func_exe()
-        # self.speaker.speak(a)
+                speaker.speak("ohh! sorry this feature is unavailable at the moment")
         return
 
 obj=Main()
 while True:
-    a=input("test Jarvis: ")
-    obj.type_inp(a)
+    audio=np.frombuffer(stream.read(1280),dtype=np.int16)
+    prediction=model.predict(audio)
+    if prediction["hey_jarvis"]>0.5:
+        sd.play(listen_aud)
+        sd.wait()
+        aud=speech.listen()
+        user_inp=speech.transcribe(aud)
+        obj.type_inp(user_inp)
+
+
 
 
 
