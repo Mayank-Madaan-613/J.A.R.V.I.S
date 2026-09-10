@@ -13,3 +13,8 @@ class TTS:
     def close(self):
         self.stream.stop()
         self.stream.close()
+if __name__=="__main__":
+    a=TTS()
+    a.speak("hello world")
+    a.close()
+

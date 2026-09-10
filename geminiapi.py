@@ -2,13 +2,14 @@ from dotenv import load_dotenv
 from google import genai
 import os
 load_dotenv()
+api_key=os.getenv("API_Gemini_key")
 class gemini:
     response=""
-    def __init__(self,ques):
-        api_key=os.getenv("API_Gemini_key")
-        gem_obj=genai.Client(api_key=api_key)
+    def __init__(self):
+        self.gem_obj=genai.Client(api_key=api_key)
+    def request(self,ques):
         querry=ques+"?"+"explain extrermely short"
-        response=gem_obj.models.generate_content(model="gemini-3-flash-preview",contents=querry)
+        response=self.gem_obj.models.generate_content(model="gemini-3-flash-preview",contents=querry)
         out=response.text 
         final_response=""
         for i in out:
