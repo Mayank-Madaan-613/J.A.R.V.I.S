@@ -2,6 +2,7 @@ import os
 import sys
 import time
 import datetime
+import openwakeword
 from openwakeword.model import Model
 from stt import STT
 from websearch import Browser
@@ -16,7 +17,9 @@ from messaging import What_message
 import asyncio 
 import numpy as np
 import pyaudio
-model=Model(wakeword_models=["hey_jarvis"])
+openwakeword.utils.download_models(model_names=["hey_jarvis"])
+
+model=Model(wakeword_models=["hey_jarvis"],inference_framework="onnx")
 pa = pyaudio.PyAudio()
 stream = pa.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1280)
 speaker=TTS()
