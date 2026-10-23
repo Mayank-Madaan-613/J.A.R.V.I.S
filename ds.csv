@@ -1,0 +1,142 @@
+command,intent
+google search how to make a sourdough starter,web_search
+search the web for the latest tech news,web_search
+look up the population of Tokyo,web_search
+search for best laptop under 50000 rupees,web_search
+google what is quantum computing,web_search
+search online for nearest Italian restaurants,web_search
+where is agra ?,web_search
+distance between agra and delhi,web_search
+how to study python?,web_search
+who is the prime minister of Canada,web_search
+why is the sky blue,web_search
+what is the capital of France,web_search
+when was the Eiffel Tower built,web_search
+what is the current stock price of Apple,web_search
+who won the football match yesterday,web_search
+tomorrow weather forecast in Delhi,web_search
+latest news about space exploration,web_search
+movie timings for avatar near me,web_search
+how do I fix a leaking tap,web_search
+how to train a binary search tree in C++,web_search
+best way to learn machine learning in 2026,web_search
+what is the difference between list and tuple in python,web_search
+open youtube,open_app
+launch youtube,open_app
+open chrome,open_app
+start spotify,open_app
+launch calculator,open_app
+open notepad,open_app
+open whatsapp,open_app
+launch visual studio code,open_app
+open steam,open_app
+start discord,open_app
+open terminal,open_app
+launch file explorer,open_app
+can you open settings for me,open_app
+please launch the camera,open_app
+bring up task manager,open_app
+switch to spotify,open_app
+run command prompt,open_app
+open up Google Chrome,open_app
+fire up vlc media player,open_app
+turn on the calculator app,open_app
+could you start slack,open_app
+open the browser,open_app
+what time is it ?,time_rn
+time right now ?,time_rn
+tell me the time,time_rn
+what's the time,time_rn
+current time,time_rn
+what time is it right now,time_rn
+time please,time_rn
+can you tell me what time it is,time_rn
+do you have the current time,time_rn
+what hour is it,time_rn
+could you check the time for me,time_rn
+what time are we at right now,time_rn
+what does the clock say,time_rn
+check current time,time_rn
+hey what time is it,time_rn
+tell me what time it is right now,time_rn
+what's the current time please,time_rn
+what time is it currently,time_rn
+send a whatsapp message to aman that says hello there!,what_msg
+send a message on whatapp to rahul saying bye,what_msg
+send whatsapp to papa saying I will be home late,what_msg
+send a message on whatsapp to rohit saying call me back,what_msg
+whatsapp message to priya that says let us meet tomorrow,what_msg
+send message to sneha saying happy birthday,what_msg
+tell mom on whatsapp that I reached safely,what_msg
+message karan on whatsapp saying running 10 minutes late,what_msg
+send a whatsapp to boss saying I am taking sick leave today,what_msg
+text sumit on whatsapp that the meeting is cancelled,what_msg
+whatsapp dev that the project files are uploaded,what_msg
+send a msg on what's app to ankit that says where are you,what_msg
+can you send a whatsapp message to Neha,what_msg
+shoot a message on whatsapp to vikram saying see you soon,what_msg
+send a quick whatsapp to simran saying check your email,what_msg
+drop a message on whatsapp to custom contact saying thanks,what_msg
+what is 25 plus 45,calculate
+calculate 120 minus 35,calculate
+what is 15 times 8,calculate
+divide 500 by 25,calculate
+how much is 14 multiplied by 6,calculate
+what is 99 divided by 9,calculate
+what is 15 percent of 2500,calculate
+calculate 20 percent tip on 85 dollars,calculate
+what is half of 450,calculate
+find 30 percent of 1200,calculate
+what is 12 percent tax on 450,calculate
+what is 2 to the power of 10,calculate
+square root of 144,calculate
+what is 5 cubed,calculate
+calculate 9 squared,calculate
+what is 3 raised to 4,calculate
+can you solve 50 plus 30 minus 12,calculate
+what do you get if you multiply 12 by 12,calculate
+solve 100 divided by 4 plus 10,calculate
+what is 5 times 6 divided by 2,calculate
+calculate 300 minus 45 plus 10,calculate
+enable gesture mode,gesture_mode
+turn on gesture control,gesture_mode
+start hand gesture mode,gesture_mode
+activate gesture recognition,gesture_mode
+switch to gesture mode,gesture_mode
+turn on computer vision gestures,gesture_mode
+start hand tracking,gesture_mode
+enable vision gestures,gesture_mode
+can you turn on hand gestures,gesture_mode
+start controlling with my hands,gesture_mode
+let me use hand gestures now,gesture_mode
+enable hand gesture navigation,gesture_mode
+activate vision mode for hand tracking,gesture_mode
+start listening for hand movements,gesture_mode
+turn on gesture mouse control,gesture_mode
+start gesture control for media playback,gesture_mode
+enable hand gesture volume control,gesture_mode
+switch to hand tracking mouse mode,gesture_mode
+disable gesture mode,gesture_mode
+turn off gesture control,gesture_mode
+stop hand gesture mode,gesture_mode
+deactivate vision gestures,gesture_mode
+exit gesture mode,gesture_mode
+stop hand tracking,gesture_mode
+set timmer for 10 minutes,timer
+put a timmer for 20 seconds,timer
+set a timer for 5 minutes,timer
+start a timer for 1 hour,timer
+set timer for 30 seconds,timer
+create a timer for 15 minutes,timer
+set a countdown for 45 seconds,timer
+timer for 10 minutes please,timer
+can you set a timer for 2 hours,timer
+wake me up with a timer in 20 minutes,timer
+start a 10 minute countdown,timer
+put on a timer for 3 minutes,timer
+set an alarm timer for 45 minutes,timer
+run a timer for 15 seconds,timer
+set a timer for 1 hour and 30 minutes,timer
+set timer for 2 minutes and 45 seconds,timer
+start a timer for 1 minute 30 seconds,timer
+create a timer for 2 hours and 15 minutes,timer
