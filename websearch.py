@@ -1,6 +1,7 @@
 import webbrowser as wb
 import re
 from stt import STT
+
 class Browser:
     listed_sites = {
         "youtube": "https://www.youtube.com",

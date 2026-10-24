@@ -16,7 +16,7 @@ import urllib.request
 from collections import deque
 from enum import Enum, auto
 from pathlib import Path
-
+import soundfile as sf
 import numpy as np
 import onnxruntime as ort
 import openwakeword
@@ -42,6 +42,7 @@ class SileroVAD:
     """Thin ONNX Runtime wrapper (no torch). Silero VAD v5: 512-sample frames + 64-sample context."""
 
     def __init__(self, model_path: Path):
+        
         model_path = Path(model_path)
         if not model_path.exists():
             model_path.parent.mkdir(parents=True, exist_ok=True)
@@ -72,9 +73,9 @@ class VoiceListener:
     def __init__(
         self,
         wake_word="hey_jarvis",
-        wake_threshold=0.5,
+        wake_threshold=0.3,
         stt=None,                      # your STT instance from stt.py (created here if None)
-        silence_end_s=2.0,             # silence after speech that ends the turn
+        silence_end_s=1.5,             # silence after speech that ends the turn
         preroll_ms=500,
         no_speech_timeout_s=6.0,       # woke up but user said nothing -> back to IDLE
         max_record_s=30.0,
@@ -101,6 +102,8 @@ class VoiceListener:
         self.max_record_s = max_record_s
         self.min_utterance_s = min_utterance_s
         self.on_wake = on_wake
+
+        self.data,self.fs=sf.read("sounds/listening.wav",dtype='float32')
 
         # Your STT model is loaded once (RAM only) but only *executed* at end-of-turn.
         if stt is None:
@@ -164,6 +167,7 @@ class VoiceListener:
         """Returns int16 audio of the utterance (pre-roll + speech + small tail), or None."""
         self.state = State.RECORDING
         self.vad.reset()
+        sd.play(self.data,self.fs)
         print("[LISTENING] Speak now...")
 
         # Pre-roll is the rolling window of the last ~500 ms *before speech onset*.

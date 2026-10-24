@@ -15,6 +15,6 @@ class TTS:
         self.stream.close()
 if __name__=="__main__":
     a=TTS()
-    a.speak("hello world")
+    a.speak("hi, this is jarvis, a smart voice assistant at your service.")
     a.close()
 

@@ -8,12 +8,16 @@ class app_open:
         self.app=re.search(pattern_website,query,re.IGNORECASE)
         if self.app:
             try:
-                open(self.app.group(1), throw_error=True)
+                open(self.app.group(1),  match_closest=True)
                 return ""
             except:
                 self.browser.open_site(self.app.group(1))
                 return ""
         else:
             return "Sorry i could not find the App."
-
+if __name__=="__main__":
+    a=app_open()
+    print("processing")
+    x=a.open("open leetcode")
+    print(x)
 

@@ -17,9 +17,8 @@ from messaging import What_message
 import asyncio 
 import numpy as np
 import pyaudio
-openwakeword.utils.download_models(model_names=["hey_jarvis"])
-
-model=Model(wakeword_models=["hey_jarvis"],inference_framework="onnx")
+import listener as ls
+import calculate as clc
 pa = pyaudio.PyAudio()
 stream = pa.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1280)
 speaker=TTS()
@@ -29,19 +28,19 @@ rm_aud=fs*0.5
 listen_aud=listen_aud[:-int(rm_aud)]
 class Main:
     def __init__(self):
+        print("initializing")
         self.browser=Browser()
         self.ai_result=gemini()
         self.predict=Predict()
         self.time=Clock()
         self.app_open=app_open()
         self.what_msg=What_message()
-        self.func_dict={"web_search":self.browser.search,"open_app":self.app_open.open,"what_msg":self.what_msg.message,"timer":self.time.timer,"time_rn":self.time.time_rn}
         data,fs=sf.read("sounds/startup.wav",dtype="float32")
         loud_data=data*4
         loud_data=np.clip(loud_data,-1.0,1.0)
         sd.play(loud_data,fs*0.75)
         sd.wait()
-    def type_inp(self,inp):
+    def executor(self,inp):
         intent=self.predict.predict(inp)
         print(intent)
         match intent:
@@ -50,10 +49,17 @@ class Main:
             case "open_app":
                 self.app_open.open(inp)
             case "what_msg":
+                print("sending message")
                 self.what_msg.message(inp)
             case "timer":
-                speaker.speak("timmer started")
+                speaker.speak("timer started")
                 asyncio.create_task(self.time.start_timer(inp))
+            case "calculate":
+                result=clc.extract_math_components(inp)
+                res=result.get("res")
+                speaker.speak(f"It comes out to be {res}")
+            case "gesture_mode":
+                import guesture
             case "time_rn":
                 res=self.time.time_rn()
                 speaker.speak(res)
@@ -62,15 +68,13 @@ class Main:
         return
 
 obj=Main()
+# obj.executor("what is 2 plus 3")
 while True:
-    audio=np.frombuffer(stream.read(1280),dtype=np.int16)
-    prediction=model.predict(audio)
-    if prediction["hey_jarvis"]>0.5:
-        sd.play(listen_aud)
-        sd.wait()
-        aud=speech.listen()
-        user_inp=speech.transcribe(aud)
-        obj.type_inp(user_inp)
+     command=ls.get_user_speech()
+     obj.executor(command)
+
+
+
 
 
 

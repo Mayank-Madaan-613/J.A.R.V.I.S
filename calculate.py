@@ -102,7 +102,7 @@ def extract_math_components(query: str) -> dict:
                 "res": expr
             }
 
-    return {"operation": None, "operands": [], "expression": None}
+    return {"operation": None, "operands": [], "res": None}
 def calc(query):
     det=extract_math_components(query)
     
