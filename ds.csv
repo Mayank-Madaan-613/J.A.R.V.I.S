@@ -140,3 +140,33 @@ set a timer for 1 hour and 30 minutes,timer
 set timer for 2 minutes and 45 seconds,timer
 start a timer for 1 minute 30 seconds,timer
 create a timer for 2 hours and 15 minutes,timer
+find file report.pdf,system_cmd
+search for document budget.xlsx on my pc,system_cmd
+find python script main.py,system_cmd
+search my computer for notes.txt,system_cmd
+locate folder project files,system_cmd
+where is image screenshot.png stored,system_cmd
+close chrome,system_cmd
+kill python process,system_cmd
+force quit spotify,system_cmd
+terminate task manager,system_cmd
+stop running vlc player,system_cmd
+close all active windows,system_cmd
+lock my PC,system_cmd
+put computer to sleep,system_cmd
+shutdown the system,system_cmd
+restart the computer,system_cmd
+lock screen now,system_cmd
+check CPU usage,system_cmd
+how much RAM am I using,system_cmd
+check battery percentage,system_cmd
+what is my battery level,system_cmd
+check system status,system_cmd
+how long has the computer been running,system_cmd
+mute system audio,system_cmd
+unmute volume,system_cmd
+set volume to 50 percent,system_cmd
+turn volume up,system_cmd
+increase brightness by 20 percent,system_cmd
+set screen brightness to max,system_cmd
+dim the screen,system_cmd
