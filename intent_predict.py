@@ -36,16 +36,17 @@ if __name__=="__main__":
     "switch to spotify",
     "search for best budget wireless earbuds in 2026",
     "whatsapp papa that i will be late for dinner",
-    "square root of six hundred twenty five"]
+    "square root of six hundred twenty five","put my computer to sleep"]
     
     out=["open_app", "time_rn", "timer", "web_search", "what_msg", "calculate", "gesture_mode",
     "open_app", "time_rn", "timer", "web_search", "what_msg", "calculate", "gesture_mode",
     "open_app", "time_rn", "timer", "web_search", "what_msg", "calculate", "gesture_mode",
-    "open_app", "web_search", "what_msg", "calculate"]
+    "open_app", "web_search", "what_msg", "calculate","system_cmd"]
     flag=True
     obj=Predict()
     for i,j in zip(cmds,out):
         a=obj.predict(i)
         if a!=j:flag=False
         print(a)
+    print(flag)
 
