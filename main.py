@@ -53,7 +53,7 @@ class Main:
                 self.what_msg.message(inp)
             case "timer":
                 speaker.speak("timer started")
-                asyncio.create_task(self.time.start_timer(inp))
+                self.time.timer_call(inp)
             case "calculate":
                 result=clc.extract_math_components(inp)
                 res=result.get("res")
@@ -68,7 +68,7 @@ class Main:
         return
 
 obj=Main()
-# obj.executor("what is 2 plus 3")
+
 while True:
      command=ls.get_user_speech()
      obj.executor(command)
