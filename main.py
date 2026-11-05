@@ -19,6 +19,7 @@ import numpy as np
 import pyaudio
 import listener as ls
 import calculate as clc
+from guesture import gesture
 pa = pyaudio.PyAudio()
 stream = pa.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1280)
 speaker=TTS()
@@ -51,6 +52,7 @@ class Main:
             case "what_msg":
                 print("sending message")
                 self.what_msg.message(inp)
+                speaker
             case "timer":
                 speaker.speak("timer started")
                 self.time.timer_call(inp)
@@ -59,7 +61,8 @@ class Main:
                 res=result.get("res")
                 speaker.speak(f"It comes out to be {res}")
             case "gesture_mode":
-                import guesture
+                ges_obj=gesture()
+                ges_obj.run_tracking()
             case "time_rn":
                 res=self.time.time_rn()
                 speaker.speak(res)
@@ -68,83 +71,6 @@ class Main:
         return
 
 obj=Main()
-
 while True:
      command=ls.get_user_speech()
      obj.executor(command)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      
-# def typein():
-#     a=input('Enter')
-#     return a
-# def voice():
-#     try:
-#         r=sr.Recognizer()
-#         with sr.Microphone() as source:
-#             speaker.speak('listening..............')
-#             # r.adjust_for_ambient_noise(source)
-#             r.pause_threshold=1
-#             audio=r.listen(source,timeout=5,phrase_time_limit=7)
-#             userspeech=r.recognize_google(audio,language='en-in')
-#             print(f'u said:{userspeech}')
-#             return userspeech
-#     except :
-#         print("oops! i coulden't get it....please repeat")
-#         voice()
-# def action(query):
-#     tpsites=[['youtube','https://www.youtube.com/?authuser=0'],['instagram','https://www.instagram.com/']]
-#     for i in tpsites:
-#         if i[0] in query:
-#             wb.open(i[1])
-# def playmusic():
-#     djo='"C:/Users/Mayank madan/Downloads/End of Beginning - Djo.mp3"'
-#     os.startfile(djo)
-# def calling():
-#     r2=sr.Recognizer()
-#     with sr.Microphone() as source:
-#         r2.pause_threshold=1
-#         audio2=r2.listen(source,timeout=100,phrase_time_limit=10)
-#         calling=r2.recognize_google(audio2,language='en-in')
-#         return calling
-
-# def main():
-#     speaker.speak('starting.............')
-#     speaker.speak('greetings')
-#     while True:
-#         try:
-#             q=calling()
-#         except:
-#             continue
-#         if (q.lower()).startswith('jarvis'):
-#             a=voice()
-#             if (a.lower()).startswith('play'):
-#                 playmusic()
-#                 continue
-#             elif (a.lower()).startswith('open'):#include pattern matching 
-#                 action(a.lower())
-#                 continue
-#             elif (a.lower()).startswith('send a message'):
-#                 sendmsg()
-#                 continue
-#             elif "ai mode" in a.lower():
-#                 a=gemini()
-#             elif "that's all" in a.lower():
-#                 speaker.speak('Signing off')
-#                 sys.exit()
-#             else:
-#                 speaker.speak("I'am afraid that i cant't do that...")
-#                 continue
