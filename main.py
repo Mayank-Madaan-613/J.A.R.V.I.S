@@ -16,6 +16,7 @@ from app_open import app_open
 from messaging import What_message
 import asyncio 
 import numpy as np
+import threading
 import pyaudio
 import listener as ls
 import calculate as clc
@@ -34,6 +35,7 @@ class Main:
         self.ai_result=gemini()
         self.predict=Predict()
         self.time=Clock()
+        self.ges_obj=gesture()
         self.app_open=app_open()
         self.what_msg=What_message()
         data,fs=sf.read("sounds/startup.wav",dtype="float32")
@@ -41,6 +43,7 @@ class Main:
         loud_data=np.clip(loud_data,-1.0,1.0)
         sd.play(loud_data,fs*0.75)
         sd.wait()
+  
     def executor(self,inp):
         intent=self.predict.predict(inp)
         print(intent)
@@ -61,8 +64,8 @@ class Main:
                 res=result.get("res")
                 speaker.speak(f"It comes out to be {res}")
             case "gesture_mode":
-                ges_obj=gesture()
-                ges_obj.run_tracking()
+                print(self.ges_obj)
+                self.ges_obj.run_tracking()
             case "time_rn":
                 res=self.time.time_rn()
                 speaker.speak(res)
@@ -74,3 +77,4 @@ obj=Main()
 while True:
      command=ls.get_user_speech()
      obj.executor(command)
+

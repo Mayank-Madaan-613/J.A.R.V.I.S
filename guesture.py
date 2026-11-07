@@ -7,7 +7,8 @@ import threading
 import sys
 class gesture:
     def __init__(self):
-        self.active=False
+        self.running=False
+        self.stp_event=threading.Event()
     def hand_tracking(self):
         # Screen size
         screen_w, screen_h = pyautogui.size()
@@ -30,7 +31,7 @@ class gesture:
         mouse_mode=False
         mode_time=None
 
-        while True:
+        while True and not self.stp_event.is_set():
             success, frame = cap.read()
             if not success:
                 break
@@ -177,11 +178,15 @@ class gesture:
         cap.release()
         cv2.destroyAllWindows()
     def run_tracking(self):
-        if(self.active==False):
+        print(self)
+        if(self.running==False):
+            self.stp_event.clear()
             threading.Thread(target=self.hand_tracking,daemon=True).start()
-            self.active=True
+            self.running=True
         else:
-            sys.exit()  
+           self.stp_event.set() 
+           self.running=False
+
 if __name__=="__main__":
     obj=gesture()
     print(obj.active)
