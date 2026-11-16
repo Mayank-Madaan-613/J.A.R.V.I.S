@@ -1,26 +1,4 @@
 command,intent
-google search how to make a sourdough starter,web_search
-search the web for the latest tech news,web_search
-look up the population of Tokyo,web_search
-search for best laptop under 50000 rupees,web_search
-google what is quantum computing,web_search
-search online for nearest Italian restaurants,web_search
-where is agra ?,web_search
-distance between agra and delhi,web_search
-how to study python?,web_search
-who is the prime minister of Canada,web_search
-why is the sky blue,web_search
-what is the capital of France,web_search
-when was the Eiffel Tower built,web_search
-what is the current stock price of Apple,web_search
-who won the football match yesterday,web_search
-tomorrow weather forecast in Delhi,web_search
-latest news about space exploration,web_search
-movie timings for avatar near me,web_search
-how do I fix a leaking tap,web_search
-how to train a binary search tree in C++,web_search
-best way to learn machine learning in 2026,web_search
-what is the difference between list and tuple in python,web_search
 open youtube,open_app
 launch youtube,open_app
 open chrome,open_app
@@ -170,3 +148,63 @@ turn volume up,system_cmd
 increase brightness by 20 percent,system_cmd
 set screen brightness to max,system_cmd
 dim the screen,system_cmd
+where is agra ?,llm
+distance between agra and delhi,llm
+why is the sky blue,llm
+what is the capital of France,llm
+when was the Eiffel Tower built,llm
+explain quantum computing in simple terms,llm
+how does photosynthesis work,llm
+what caused the fall of the Roman Empire,llm
+explain the theory of relativity,llm
+what is the difference between a virus and bacteria,llm
+how to study python?,llm
+how to write a binary search tree in C++,llm
+best way to learn machine learning,llm
+what is the difference between list and tuple in python,llm
+write a python script to reverse a linked list,llm
+how does backpropagation work in neural networks,llm
+what is the time complexity of merge sort,llm
+explain recursion with an example,llm
+how do pointers work in C++,llm
+what is the difference between TCP and UDP,llm
+how do I fix a leaking tap,llm
+give me three ideas for a weekend coding project,llm
+how can I improve my focus while studying,llm
+suggest some healthy breakfast ideas,llm
+what are some tips for a job interview,llm
+can you help me draft a professional email,llm
+summarize the main causes of World War 2,llm
+tell me a quick joke,llm
+give me a motivational quote,llm
+write a short poem about rain,llm
+paraphrase this sentence for me,llm
+explain this concept like I am five,llm
+who are you and what can you do,llm
+let's have a quick chat,llm
+can you help me brainstorm names for a new app,llm
+google search how to make a sourdough starter,web_search
+search the web for the latest tech news,web_search
+look up the population of Tokyo,web_search
+search for best laptop under 50000 rupees,web_search
+google what is quantum computing,web_search
+search online for nearest Italian restaurants,web_search
+search google for python documentation,web_search
+search youtube for lo-fi beats,web_search
+look up reviews for the latest iPhone,web_search
+find articles about renewable energy,web_search
+what is the current stock price of Apple,web_search
+who won the football match yesterday,web_search
+tomorrow weather forecast in Delhi,web_search
+latest news about space exploration,web_search
+who is the current prime minister of Canada,web_search
+look up today's gold rate in Delhi,web_search
+check live cricket score,web_search
+what is the exchange rate of dollar to rupee right now,web_search
+latest updates on the elections,web_search
+is my flight on time today,web_search
+movie timings for avatar near me,web_search
+find best cafes near me,web_search
+nearest petrol pump open right now,web_search
+check traffic conditions to the airport,web_search
+restaurants open late near me,web_search
