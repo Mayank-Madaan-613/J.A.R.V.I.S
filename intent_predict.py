@@ -9,7 +9,7 @@ class Predict:
         vector=self.vectorizer.transform([inp])
         prediction=self.model.predict(vector)
         return prediction[0]
-    
+
 if __name__=="__main__":
     #test
     cmds=["fire up visual studio code real quick",
