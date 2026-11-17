@@ -15,5 +15,5 @@ class gemini:
         for i in out:
             if i not in "*-#.!":
                 final_response+=i
-        self.response=final_response
+        return final_response
 

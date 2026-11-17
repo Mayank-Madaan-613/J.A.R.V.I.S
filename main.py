@@ -21,6 +21,7 @@ import pyaudio
 import listener as ls
 import calculate as clc
 from guesture import gesture
+from geminiapi import gemini
 pa = pyaudio.PyAudio()
 stream = pa.open(format=pyaudio.paInt16, channels=1, rate=16000, input=True, frames_per_buffer=1280)
 speaker=TTS()
@@ -32,6 +33,7 @@ class Main:
     def __init__(self):
         print("initializing")
         self.browser=Browser()
+        self.LLM=gemini()
         self.ai_result=gemini()
         self.predict=Predict()
         self.time=Clock()
@@ -68,6 +70,9 @@ class Main:
                 self.ges_obj.run_tracking()
             case "time_rn":
                 res=self.time.time_rn()
+                speaker.speak(res)
+            case "llm": 
+                res=self.LLM.request(inp)
                 speaker.speak(res)
             case _ :
                 speaker.speak("ohh! sorry this feature is unavailable at the moment")
