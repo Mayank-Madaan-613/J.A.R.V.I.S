@@ -178,7 +178,6 @@ class gesture:
         cap.release()
         cv2.destroyAllWindows()
     def run_tracking(self):
-        print(self)
         if(self.running==False):
             self.stp_event.clear()
             threading.Thread(target=self.hand_tracking,daemon=True).start()
