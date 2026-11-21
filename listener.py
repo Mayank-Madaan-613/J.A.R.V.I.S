@@ -73,7 +73,7 @@ class VoiceListener:
     def __init__(
         self,
         wake_word="hey_jarvis",
-        wake_threshold=0.3,
+        wake_threshold=0.25,
         stt=None,                      # your STT instance from stt.py (created here if None)
         silence_end_s=1.5,             # silence after speech that ends the turn
         preroll_ms=500,
