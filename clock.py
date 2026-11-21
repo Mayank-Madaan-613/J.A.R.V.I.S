@@ -2,6 +2,7 @@ import time
 from datetime import datetime
 import re
 import threading
+from tts import TTS 
 class Clock:
     def time_rn(self):
         time_curr=time.time()
@@ -9,8 +10,10 @@ class Clock:
         time_curr=dt_obj.strftime("%I %M %p")
         return time_curr
     def timer(self,counter_time):
+            speaker=TTS()
             time.sleep(counter_time)
-            print("times up!")
+            speaker.speak("times up!")
+            speaker.close()
     def timer_call(self,query):
         pattern = re.compile(
             r"(?:(?P<hr>\d+)\s*(?:hours?|hour|hr?))?[^\d]*"

@@ -51,13 +51,13 @@ class Main:
         print(intent)
         match intent:
             case "web_search":
+                speaker.speak("here are the web results...")
                 self.browser.search(inp)
             case "open_app":
                 self.app_open.open(inp)
             case "what_msg":
                 print("sending message")
                 self.what_msg.message(inp)
-                speaker
             case "timer":
                 speaker.speak("timer started")
                 self.time.timer_call(inp)
@@ -66,11 +66,14 @@ class Main:
                 res=result.get("res")
                 speaker.speak(f"It comes out to be {res}")
             case "gesture_mode":
-                print(self.ges_obj)
+                if self.ges_obj.running==False:
+                    speaker.speak("hand tracking activated")
+                else:
+                    speaker.speak("Hand tracking deactivated")
                 self.ges_obj.run_tracking()
             case "time_rn":
                 res=self.time.time_rn()
-                speaker.speak(res)
+                speaker.speak("the current time is "+res)
             case "llm": 
                 res=self.LLM.request(inp)
                 speaker.speak(res)

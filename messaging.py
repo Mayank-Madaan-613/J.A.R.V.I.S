@@ -5,7 +5,7 @@ import asyncio
 
 class What_message:
     def __init__(self):
-        self.contacts={"mayank":"+919211168123"}
+        self.contacts={"me":"+919211168123"}
     def extract_info(self, text):
         clean_text = text.strip()
 
@@ -38,7 +38,7 @@ class What_message:
         main_dict=self.extract_info(input)
         contact=main_dict.get("contact")
         message=main_dict.get("message")
-        print(contact," ",message)
+        print(contact,"--",message)
         if contact.lower() in self.contacts:
             date=datetime.datetime.now()
             current_time=(str((date).time())).split(':')
