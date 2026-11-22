@@ -56,7 +56,7 @@ class Main:
             case "open_app":
                 self.app_open.open(inp)
             case "what_msg":
-                print("sending message")
+                speaker.speak("the message will be delivered soon")
                 self.what_msg.message(inp)
             case "timer":
                 speaker.speak("timer started")

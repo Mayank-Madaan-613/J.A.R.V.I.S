@@ -1,20 +1,34 @@
+# import os
+# import sys
+# import openvino
+
+# # Explicitly register OpenVINO's C++ DLL folder on Windows before importing onnxruntime
+# print(os.path)
+# ov_libs = os.path.join(os.path.dirname(openvino.__file__), "libs")
+# if os.path.isdir(ov_libs):
+#     os.add_dll_directory(ov_libs)
+#     os.environ["PATH"] = ov_libs + os.pathsep + os.environ.get("PATH", "")
+
 import sounddevice as sd
 import numpy as np
-from piper.voice import PiperVoice
+import onnxruntime as ort
+from kokoro_onnx import Kokoro
 
 class TTS:
     def __init__(self):
-        self.stream =sd.OutputStream(samplerate=22050,channels=1,dtype=np.int16)
-        self.voice = PiperVoice.load("voices/female/en_US-amy-medium.onnx")
-        self.stream.start()
-    def speak(self,cmd:str):
-        for chunk in self.voice.synthesize(cmd):
-            self.stream.write(np.frombuffer(chunk.audio_int16_bytes,dtype=np.int16))
-    def close(self):
-        self.stream.stop()
-        self.stream.close()
-if __name__=="__main__":
-    a=TTS()
-    a.speak("hi, this is jarvis, a smart voice assistant at your service.")
-    a.close()
+        self.tts=Kokoro("voices/kokoro-v1.0.onnx","voices/voices-v1.0.bin")
+        self.tts.sess = ort.InferenceSession("voices/kokoro-v1.0.onnx")
+    def speak(self,inp:str):
+        self.samples, self.sample_rate = self.tts.create(
+            inp,
+            voice="af_heart",
+            speed=1.0,
+            lang="en-us"
+        )
+        sd.play(self.samples, self.sample_rate)
+        sd.wait()
 
+if __name__=="__main__":
+    obj=TTS()
+    obj.speak("hello ther how are you, this is being run on CPU and it's kind of better than piper.")
+    obj.speak("this is the testing for the new upgrade in JARVIS")
