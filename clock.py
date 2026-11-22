@@ -13,7 +13,6 @@ class Clock:
             speaker=TTS()
             time.sleep(counter_time)
             speaker.speak("times up!")
-            speaker.close()
     def timer_call(self,query):
         pattern = re.compile(
             r"(?:(?P<hr>\d+)\s*(?:hours?|hour|hr?))?[^\d]*"

@@ -36,23 +36,16 @@ class What_message:
         
     def message(self, input):
         main_dict=self.extract_info(input)
-        contact=main_dict.get("contact")
-        message=main_dict.get("message")
-        print(contact,"--",message)
-        if contact.lower() in self.contacts:
+        self.contact=main_dict.get("contact")
+        self.message=main_dict.get("message")
+        print(self.contact,"--",self.message)
+        if self.contact.lower() in self.contacts:
             date=datetime.datetime.now()
             current_time=(str((date).time())).split(':')
-            pywhatkit.sendwhatmsg_instantly(self.contacts[contact],message)
+            pywhatkit.sendwhatmsg_instantly(self.contacts[self.contact],self.message)
             print("message sent")
-    def schedule_msg(self,input,inp_time):
-        #inp_inp_time=[hour,min]
-        contact,message=self.extract_info
-        if contact.lower() in self.contacts:
-            date=datetime.datetime.now()
-            current_time=str((date).time()).split(":")
-            pywhatkit.sendwhatmsg(self.contacts[contact],message,inp_time[0],inp_time[1])
 
 if __name__=="__main__":
     a=What_message()
-    print(a.extract_info("send a message to rahul saying good morning"))
+    a.message("send a message to me saying good morning")
     
