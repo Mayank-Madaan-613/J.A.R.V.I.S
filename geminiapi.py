@@ -8,7 +8,7 @@ class gemini:
     def __init__(self):
         self.gem_obj=genai.Client(api_key=api_key)
     def request(self,ques):
-        querry=ques+"?"+"explain extrermely short"
+        querry=ques+"(response should be Speakable, terse, plain text)"
         response=self.gem_obj.models.generate_content(model="gemini-3-flash-preview",contents=querry)
         out=response.text 
         final_response=""
